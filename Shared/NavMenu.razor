@@ -1,0 +1,56 @@
+﻿
+ <nav id="sideNav"
+     class="sidebar bg-primary text-white flex-column align-items-center p-4"
+     style="width: 200px; min-height: 100vh; position: fixed;">
+    
+    <img src="https://bt-component-netcore.cybersoft.edu.vn/assets/img/profile.jpg"
+         class="rounded-circle mb-3" width="120">
+
+    <h3 class="mb-4">Hayahi Kaori</h3>
+
+    <ul class="nav flex-column w-100">
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#about"
+               @onclick='() => ScrollToSection("about")'>
+               About
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#experience"
+               @onclick='() => ScrollToSection("experience")'>
+               Experience
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#education"
+               @onclick='() => ScrollToSection("education")'>
+               Education
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#skills"
+               @onclick='() => ScrollToSection("skills")'>
+               Skills
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#interests"
+               @onclick='() => ScrollToSection("interests")'>
+               Interests
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#award"
+               @onclick='() => ScrollToSection("award")'>
+               Award
+            </a>
+        </li>
+
+    </ul>
+</nav>
