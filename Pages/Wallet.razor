@@ -1,0 +1,16 @@
+<div class="card text-center mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4>Ví tiền của bạn</h4>
+    </div>
+    <div class="card-body">
+        <h2 class="display-4">@SoDu.ToString("N0") VNĐ</h2>
+        <button class="btn btn-success mx-2" @onclick="OnDeposit">Nạp tiền</button>
+        <button class="btn btn-danger mx-2" @onclick="OnWithdraw">Rút tiền</button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public decimal SoDu { get; set; }
+    [Parameter] public EventCallback OnDeposit { get; set; }
+    [Parameter] public EventCallback OnWithdraw { get; set; }
+}

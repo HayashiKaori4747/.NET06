@@ -1,0 +1,39 @@
+<div class="card mb-4">
+    <div class="card-header bg-info text-white">
+        <h5>Lịch sử giao dịch</h5>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped mb-0">
+            <thead>
+                <tr>
+                    <th>Loại giao dịch</th>
+                    <th>Số tiền (VNĐ)</th>
+                    <th>Thời gian</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (LichSuGiaoDich?.Count > 0)
+                {
+                    foreach (var item in LichSuGiaoDich)
+                    {
+                        <tr>
+                            <td>@item.Type</td>
+                            <td>@item.Amount.ToString("N0")</td>
+                            <td>@item.Time.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center">Chưa có giao dịch nào</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    [Parameter] public List<Transaction> LichSuGiaoDich { get; set; }
+}

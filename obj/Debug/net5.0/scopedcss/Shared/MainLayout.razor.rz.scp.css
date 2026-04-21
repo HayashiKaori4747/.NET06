@@ -1,0 +1,52 @@
+/* Sidebar styles */
+.sidebar[b-09vue0grag] {
+    height: 100vh;
+    min-height: 100vh;
+    width: 260px;
+    background: rgb(192, 97, 9) !important;
+    color: #fff;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sidebar img[b-09vue0grag] {
+    border: 4px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sidebar h3[b-09vue0grag] {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.sidebar .nav-link[b-09vue0grag] {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar .nav-link.active[b-09vue0grag], .sidebar .nav-link:hover[b-09vue0grag] {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+}
+
+main.bg-light[b-09vue0grag] {
+    min-height: 100vh;
+    margin-left: 260px;
+    height: 100vh;
+    overflow-y: auto;
+}
+

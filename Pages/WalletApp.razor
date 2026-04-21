@@ -1,0 +1,39 @@
+@page "/vi-tien"
+
+@using DUAN1.Pages
+
+<Wallet SoDu="@SoDu" OnDeposit="ShowDepositModal" OnWithdraw="ShowWithdrawModal" />
+<TransactionHistory LichSuGiaoDich="@LichSuGiaoDich" />
+
+<DepositWithdrawModal @ref="modalRef" Mode="@modalMode" OnSubmit="HandleTransaction" SoDu="@SoDu" />
+
+@code {
+    decimal SoDu = 0;
+    List<Transaction> LichSuGiaoDich = new();
+    DepositWithdrawModal modalRef;
+    string modalMode = "deposit";
+
+    void ShowDepositModal()
+    {
+        modalMode = "deposit";
+        modalRef.Show();
+    }
+    void ShowWithdrawModal()
+    {
+        modalMode = "withdraw";
+        modalRef.Show();
+    }
+    void HandleTransaction(Transaction trans)
+    {
+        if (trans.Type == "Nạp tiền")
+        {
+            SoDu += trans.Amount;
+        }
+        else if (trans.Type == "Rút tiền")
+        {
+            SoDu -= trans.Amount;
+        }
+        LichSuGiaoDich.Insert(0, trans);
+        StateHasChanged();
+    }
+}

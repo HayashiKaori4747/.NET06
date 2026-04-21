@@ -1,0 +1,72 @@
+@if (IsShow)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.3);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@Title</h5>
+                    <button type="button" class="btn-close" @onclick="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <EditForm Model="this" OnValidSubmit="Submit">
+                        <div class="mb-3">
+                            <label class="form-label">Số tiền</label>
+                            <InputNumber class="form-control" @bind-Value="Amount" />
+                            @if (!string.IsNullOrEmpty(Error))
+                            {
+                                <div class="text-danger mt-1">@Error</div>
+                            }
+                        </div>
+                        <button type="submit" class="btn btn-primary">OK</button>
+                        <button type="button" class="btn btn-secondary ms-2" @onclick="Close">Hủy</button>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public string Mode { get; set; } = "deposit";
+    [Parameter] public decimal SoDu { get; set; }
+    [Parameter] public EventCallback<Transaction> OnSubmit { get; set; }
+    bool IsShow = false;
+    decimal Amount = 0;
+    string Error = string.Empty;
+    string Title => Mode == "deposit" ? "Nạp tiền vào ví" : "Rút tiền từ ví";
+
+    public void Show()
+    {
+        IsShow = true;
+        Amount = 0;
+        Error = string.Empty;
+        StateHasChanged();
+    }
+    void Close()
+    {
+        IsShow = false;
+        Error = string.Empty;
+    }
+    async Task Submit()
+    {
+        Error = string.Empty;
+        if (Amount <= 0)
+        {
+            Error = "Số tiền phải lớn hơn 0";
+            return;
+        }
+        if (Mode == "withdraw" && Amount > SoDu)
+        {
+            Error = "Số tiền rút không được lớn hơn số dư hiện tại";
+            return;
+        }
+        var trans = new Transaction
+        {
+            Type = Mode == "deposit" ? "Nạp tiền" : "Rút tiền",
+            Amount = Amount,
+            Time = DateTime.Now
+        };
+        await OnSubmit.InvokeAsync(trans);
+        Close();
+    }
+}
